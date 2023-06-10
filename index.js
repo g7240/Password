@@ -21,7 +21,7 @@ app.get('/Autore', (req, res) => {
 })
 app.get('/', (req, res) => {
   contatore_download= contatore_download +1;
-  console.log("Articolo numero "+contatore_download+"dal "+year + "-" + month + "-" + date)
+  console.log("Articolo numero "+contatore_download+" dal "+year + "-" + month + "-" + date)
   res.sendFile("./public/articoloPassword.pdf",{root:__dirname})
 })
 app.get('/Accessi', (req, res) => {
