@@ -1,8 +1,12 @@
 const express = require('express')
 const path= require('path')
-const fs = require('fs');
 const app = express()
 const port = process.env.PORT || 9000
+
+let contatore_download;
+let date;
+let month;
+let year;
 
 
 
@@ -10,48 +14,25 @@ app.use(express.static(__dirname + '/public/'))
 app.use('/favicon.ico', express.static(__dirname + '/public/images/immagine.png'));
 /** Servo pagine statiche */
 app.get('/Autore', (req, res) => {
-  console.log("rispondo con ChiSiamo")
+  console.log("rispondo alla richiesta Autore.")
   res.send("<h1>Autore: Gabriele Bellini</h1><p>Studente di Sicurezza dei Sistemi e delle Reti Informatiche all'UniMI</p>")
 })
-function aggiornaNumeroVisualizzazioni(){
-  fs.readFile('./public/accessi.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    data= parseInt(data);
-    data= data+1;
-    data= data.toString()
-    fs.writeFile('./public/accessi.txt', data, err => {
-      if (err) {
-        console.error(err);
-      }
-      // file written successfully
-    });
-  });
-  
-}
-app.get('/ArticoloPassword', (req, res) => {
-  console.log("<-- rispondo con Relazione ---")
+app.get('/', (req, res) => {
+  contatore_download= contatore_download +1;
+  console.log("rispondo con l'Articolo. Volta numero "+contatore_download)
   res.sendFile("./public/articoloPassword.pdf",{root:__dirname})
-  console.log("--- risposta inviata, modifico il contatore ---")
-  aggiornaNumeroVisualizzazioni();
-  console.log("--- fine modifica contatore -->")
 })
-app.get('/AccessiArticoloPassword', (req, res) => {
-  fs.readFile('./public/accessi.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    res.send("<h1>Il numero di visualizzazzioni dell'articolo sulle password è "+data+"</h1>");
-  })
+app.get('/Accessi', (req, res) => {
+  res.send("<h1>Ci sono state "+contatore_download+" visualizzazzioni dell'articolo a partire dal "+year + "-" + month + "-" + date +"</h1>");
 })
-app.get('/', function(req, res) {
-  res.send('<h1>Le pagine diponibili sono<\h1><br><a href="./Autore">Autore</a><br><a href="./ArticoloPassword">ArticoloPassword</a><br><a href="./AccessiArticoloPassword">Numero di accessi ad ArticoloPassword</a>');
-});
 
 app.listen(port, () => {
+  let date_ob = new Date(Date.now());
+  date = date_ob.getDate();
+  month = date_ob.getMonth() + 1;
+  year = date_ob.getFullYear();
+  contatore_download= 0;
+
   console.log(`App listening on port ${port}`)
 })
 
