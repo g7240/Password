@@ -43,7 +43,7 @@ app.get('/AccessiArticoloPassword', (req, res) => {
     res.send("<h1>Il numero di visualizzazzioni dell'articolo sulle password è "+data+"</h1>");
   })
 })
-app.get('/*', function(req, res) {
+app.get('/', function(req, res) {
   res.send('<h1>Le pagine diponibili sono<\h1><br><a href="./Autore">Autore</a><br><a href="./ArticoloPassword">ArticoloPassword</a><br><a href="./AccessiArticoloPassword">Numero di accessi ad ArticoloPassword</a>');
 });
 
