@@ -32,8 +32,11 @@ function aggiornaNumeroVisualizzazioni(){
   
 }
 app.get('/ArticoloPassword', (req, res) => {
+  console.log("<-- rispondo con Relazione ---")
   res.sendFile("./public/articoloPassword.pdf",{root:__dirname})
+  console.log("--- risposta inviata, modifico il contatore ---")
   aggiornaNumeroVisualizzazioni();
+  console.log("--- fine modifica contatore -->")
 })
 app.get('/AccessiArticoloPassword', (req, res) => {
   fs.readFile('./public/accessi.txt', 'utf8', (err, data) => {
