@@ -9,15 +9,11 @@
     "routes":[
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "./"
         },
         {
             "src": "/public/(.*)",
-            "dest": "/public/"
-        },
-        {
-            "src": "/views/(.*)",
-            "dest": "/views/"
+            "dest": "./public/"
         }
     ]
 }
