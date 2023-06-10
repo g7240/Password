@@ -1,7 +1,7 @@
 {
   "name": "articolo_password",
   "version": "1.0.0",
-  "description": "articolo pdf",
+  "description": "articoloPasswordPdf",
   "main": "index.js",
   "engines": {
     "node": "16.x"
