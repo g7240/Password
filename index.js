@@ -21,6 +21,7 @@ function aggiornaNumeroVisualizzazioni(){
     }
     data= parseInt(data);
     data= data+1;
+    data= data.toString()
     fs.writeFile('./public/accessi.txt', data, err => {
       if (err) {
         console.error(err);
