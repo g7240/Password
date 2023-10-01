@@ -5,7 +5,7 @@
     <title>Articolo password</title>
     <style>
         @media print {
-            adobe-dc-view {
+            #adobe-dc-view {
                 display: none;
             }
             body {
@@ -21,7 +21,7 @@
         document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
             var adobeDCView = new AdobeDC.View({clientId: "4541cb3f22d34062b927444a38370093", divId: "adobe-dc-view", locale: "	it-IT",});
             adobeDCView.previewFile({
-                content:{location: {url: "https://articolo-password.vercel.app/articolo-password.pdf">}},
+                content:{location: {url: "https://articolo-password.vercel.app/articolo-password.pdf"}},
                 metaData:{fileName: "Articolo password.pdf"}
             }, {defaultViewMode: "FIT_WIDTH", showAnnotationTools: false, showDownloadPDF: false, 
                 showPrintPDF: false});
